@@ -20,7 +20,7 @@ public class TSuiteCaseApiServiceImpl implements TSuiteCaseApiService {
         for (TSuiteCaseApi tSuiteCaseUi : tSuiteCaseApis) {
             tSuiteCaseUi.setSort(sort);
             tSuiteCaseApiMapper.insertSelective(tSuiteCaseUi);
-            sort++;
+            sort+++;
         }
     }
 }
