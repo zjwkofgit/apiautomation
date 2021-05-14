@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.apiautomation.apitest.dao.TSuiteCaseApiMapper">
+
+
+    <insert id="insertSelective" parameterType="com.we.apiautomation.apitest.model.TSuiteCaseApi">
+        insert into t_suite_case_api
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="suiteId != null">
+                suite_id,
+            </if>
+            <if test="caseId != null ">
+                case_id,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="isValid != null">
+                is_valid,
+            </if>
+        </trim>
+        <trim prefix="value(" suffix=")" suffixOverrides=",">
+            <if test="suiteId != null">
+                #{suiteId},
+            </if>
+            <if test="caseId != null ">
+                #{caseId},
+            </if>
+            <if test="sort != null">
+                #{sort},
+            </if>
+            <if test="isValid != null">
+                #{is_valid},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="findMaxSortBySuiteId" resultType="java.lang.Integer">
+        select max(sort) as maxsort
+        from t_suite_case_api
+        where suite_id=#{suiteId,jdbcType=BIGINT}
+    </select>
+
+
+</mapper>

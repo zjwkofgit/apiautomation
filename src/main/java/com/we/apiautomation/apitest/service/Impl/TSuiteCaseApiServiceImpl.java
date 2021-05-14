@@ -1,5 +1,6 @@
 package com.we.apiautomation.apitest.service.Impl;
 
+import com.we.apiautomation.apitest.dao.TSuiteCaseApiMapper;
 import com.we.apiautomation.apitest.model.TSuiteCaseApi;
 import com.we.apiautomation.apitest.service.TSuiteCaseApiService;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,9 @@ import java.util.List;
 
 @Service
 public class TSuiteCaseApiServiceImpl implements TSuiteCaseApiService {
+
+    @Resource
+    TSuiteCaseApiMapper tSuiteCaseApiMapper;
 
     @Override
     public void addCaseToSuite(List<TSuiteCaseApi> tSuiteCaseApis) {
@@ -20,7 +24,7 @@ public class TSuiteCaseApiServiceImpl implements TSuiteCaseApiService {
         for (TSuiteCaseApi tSuiteCaseUi : tSuiteCaseApis) {
             tSuiteCaseUi.setSort(sort);
             tSuiteCaseApiMapper.insertSelective(tSuiteCaseUi);
-            sort+++;
+            sort++;
         }
     }
 }
