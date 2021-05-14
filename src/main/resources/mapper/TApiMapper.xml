@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.apiautomation.apitest.dao.TApiMapper">
+
+    <select id="findByAll"  resultType="TApi">
+        select * from t_api
+        <where>
+            <if test="id != null ">
+                and id=#{id}
+            </if>
+            <if test="apiSuiteId != null">
+                and api_suite_id=#{apiSuiteId}
+            </if>
+            <if test="name != null and name != '' ">
+                and name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark=#{remark,jdbcType=LONGVARCHAR}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+
+</mapper>
