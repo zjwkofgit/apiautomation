@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.apiautomation.apitest.dao.TTestcaseApiDtoMapper">
 
+    <select id="selectDtoBySuiteId" resultType="com.we.apiautomation.apitest.dto.TestcaseApiDto">
+        SELECT
+        a.id AS suite_case_id,
+        a.suite_id,
+        a.sort,
+        b.* FROM t_suite_case_api a,t_testcase_api b WHERE a.case_id = b.id and a.suite_id = #{id}
+    </select>
 
 
 
