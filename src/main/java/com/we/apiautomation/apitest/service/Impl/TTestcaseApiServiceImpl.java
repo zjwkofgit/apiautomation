@@ -29,11 +29,24 @@ public class TTestcaseApiServiceImpl implements TTestcaseApiService {
 
     @Resource
     TTestcaseApiDtoMapper tTestcaseApiDtoMapper;
+    @Resource
+    TTestcaseApiMapper tTestcaseApiMapper;
 
     @Override
     public List<TestcaseApiDto> selectDtoBySuiteId(Long id) {
         return tTestcaseApiDtoMapper.selectDtoBySuiteId(id);
     }
+
+    @Override
+    public PageInfo<TTestcaseApi> findByAllwithPage(int pageNum,int pageSize,TTestcaseApi tTestcaseApi){
+
+        PageHelper.startPage(pageNum,pageSize);
+        List<TTestcaseApi> mapper = tTestcaseApiMapper.findByAll(tTestcaseApi);
+        System.out.println(mapper.toString());
+        return new PageInfo<>(mapper);
+
+    }
+
 }
 
 

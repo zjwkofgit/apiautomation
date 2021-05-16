@@ -6,6 +6,7 @@ import com.we.apiautomation.apitest.model.po.Param;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class TTestcaseApi implements Serializable {
 
     private String updateBy;
 
-    private Date createTime;
+    private Timestamp createTime;
 
     private Date updateTime;
 

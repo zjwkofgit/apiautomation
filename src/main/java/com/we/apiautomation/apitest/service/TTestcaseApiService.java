@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface TTestcaseApiService {
 
-
-
     List<TestcaseApiDto> selectDtoBySuiteId(Long id);
+
+    PageInfo<TTestcaseApi> findByAllwithPage(int pageNum,int pageSize,TTestcaseApi tTestcaseApi);
 }
 
 
