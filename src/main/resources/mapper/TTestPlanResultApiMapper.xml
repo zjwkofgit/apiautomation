@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.apiautomation.apitest.dao.TTestPlanResultApiMapper">
+    <resultMap id="BaseResultMap" type="com.we.apiautomation.apitest.model.TTestPlanResultApi">
+        <!--@mbg.generated-->
+        <!--@Table t_test_plan_result_api-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="job_id" jdbcType="BIGINT" property="jobId"/>
+        <result column="project_id" jdbcType="BIGINT" property="projectId"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="suite_total_count" jdbcType="INTEGER" property="suiteTotalCount"/>
+        <result column="suite_succ_count" jdbcType="INTEGER" property="suiteSuccCount"/>
+        <result column="suite_fail_count" jdbcType="INTEGER" property="suiteFailCount"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, job_id, project_id, `status`, suite_total_count, suite_succ_count, suite_fail_count,
+        end_time, remark, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from t_test_plan_result_api
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from t_test_plan_result_api
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.we.apiautomation.apitest.model.TTestPlanResultApi"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into t_test_plan_result_api (`name`, job_id, project_id,
+        `status`, suite_total_count, suite_succ_count,
+        suite_fail_count, end_time, remark,
+        create_time)
+        values (#{name,jdbcType=VARCHAR}, #{jobId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT},
+        #{status,jdbcType=INTEGER}, #{suiteTotalCount,jdbcType=INTEGER}, #{suiteSuccCount,jdbcType=INTEGER},
+        #{suiteFailCount,jdbcType=INTEGER}, #{endTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.we.apiautomation.apitest.model.TTestPlanResultApi"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into t_test_plan_result_api
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                `name`,
+            </if>
+            <if test="jobId != null">
+                job_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="suiteTotalCount != null">
+                suite_total_count,
+            </if>
+            <if test="suiteSuccCount != null">
+                suite_succ_count,
+            </if>
+            <if test="suiteFailCount != null">
+                suite_fail_count,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="remark != null and remark != ''">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="jobId != null">
+                #{jobId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="suiteTotalCount != null">
+                #{suiteTotalCount,jdbcType=INTEGER},
+            </if>
+            <if test="suiteSuccCount != null">
+                #{suiteSuccCount,jdbcType=INTEGER},
+            </if>
+            <if test="suiteFailCount != null">
+                #{suiteFailCount,jdbcType=INTEGER},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null and remark != ''">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.we.apiautomation.apitest.model.TTestPlanResultApi">
+        <!--@mbg.generated-->
+        update t_test_plan_result_api
+        <set>
+            <if test="name != null and name != ''">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="jobId != null">
+                job_id = #{jobId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="suiteTotalCount != null">
+                suite_total_count = #{suiteTotalCount,jdbcType=INTEGER},
+            </if>
+            <if test="suiteSuccCount != null">
+                suite_succ_count = #{suiteSuccCount,jdbcType=INTEGER},
+            </if>
+            <if test="suiteFailCount != null">
+                suite_fail_count = #{suiteFailCount,jdbcType=INTEGER},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.we.apiautomation.apitest.model.TTestPlanResultApi">
+        <!--@mbg.generated-->
+        update t_test_plan_result_api
+        set `name` = #{name,jdbcType=VARCHAR},
+        job_id = #{jobId,jdbcType=BIGINT},
+        project_id = #{projectId,jdbcType=BIGINT},
+        `status` = #{status,jdbcType=INTEGER},
+        suite_total_count = #{suiteTotalCount,jdbcType=INTEGER},
+        suite_succ_count = #{suiteSuccCount,jdbcType=INTEGER},
+        suite_fail_count = #{suiteFailCount,jdbcType=INTEGER},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        remark = #{remark,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-29-->
+    <select id="findByAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_test_plan_result_api
+        <where>
+            <if test="id != null">
+                and id=#{id,jdbcType=BIGINT}
+            </if>
+            <if test="name != null and name != ''">
+                and `name`=#{name,jdbcType=VARCHAR}
+            </if>
+            <if test="jobId != null">
+                and job_id=#{jobId,jdbcType=BIGINT}
+            </if>
+            <if test="projectId != null">
+                and project_id=#{projectId,jdbcType=BIGINT}
+            </if>
+            <if test="status != null">
+                and `status`=#{status,jdbcType=INTEGER}
+            </if>
+            <if test="suiteTotalCount != null">
+                and suite_total_count=#{suiteTotalCount,jdbcType=INTEGER}
+            </if>
+            <if test="suiteSuccCount != null">
+                and suite_succ_count=#{suiteSuccCount,jdbcType=INTEGER}
+            </if>
+            <if test="suiteFailCount != null">
+                and suite_fail_count=#{suiteFailCount,jdbcType=INTEGER}
+            </if>
+            <if test="endTime != null">
+                and end_time=#{endTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark=#{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

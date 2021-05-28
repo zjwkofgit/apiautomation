@@ -12,6 +12,8 @@ public interface TTestcaseApiService {
     List<TestcaseApiDto> selectDtoBySuiteId(Long id);
 
     PageInfo<TTestcaseApi> findByAllwithPage(int pageNum,int pageSize,TTestcaseApi tTestcaseApi);
+
+    TApiCaseResultDto excCase(TestcaseApiDto testcaseApi);
 }
 
 

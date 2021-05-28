@@ -34,4 +34,14 @@ public class TApiServiceImpl implements TApiService {
     public TApiResult excApi(TApi api, Map<String, Object> gVars, Map<String, Object> caseVars, List<ApiParam> params) {
         return requestExecutorServer.executeHttpRequest(api, gVars, caseVars, params);
     }
+
+    @Override
+    public List<TApi> findByNameAndProjectId(String name, Long projectId) {
+        return tApiMapper.findByNameAndProjectId(name, projectId);
+    }
+
+    @Override
+    public int insertSelective(TApi record) {
+        return tApiMapper.insertSelective(record);
+    }
 }

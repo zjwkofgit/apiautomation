@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.apiautomation.apitest.dao.GlobalParamMapper">
+  <resultMap id="BaseResultMap" type="com.we.apiautomation.apitest.model.GlobalParam">
+    <!--@mbg.generated-->
+    <!--@Table t_global_param-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="param_name" jdbcType="VARCHAR" property="paramName" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="param_type" jdbcType="INTEGER" property="paramType" />
+    <result column="param_value" jdbcType="LONGVARCHAR" property="paramValue" />
+    <result column="env_vars" jdbcType="LONGVARCHAR" property="envVars" typeHandler="com.we.apiautomation.apitest.typehandler.GlobalVarListTypeHandler" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, param_name, project_id, param_type, param_value, env_vars, `type`, remark, create_by,
+    create_time, update_by, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_global_param
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_global_param
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.we.apiautomation.apitest.model.GlobalParam" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_global_param (param_name, project_id, param_type,
+      param_value, env_vars,
+      `type`, remark, create_by,
+      create_time, update_by, update_time
+      )
+    values (#{paramName,jdbcType=VARCHAR}, #{projectId,jdbcType=BIGINT}, #{paramType,jdbcType=INTEGER},
+      #{paramValue,jdbcType=LONGVARCHAR}, #{envVars,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.GlobalVarListTypeHandler},
+      #{type,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.we.apiautomation.apitest.model.GlobalParam" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_global_param
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="paramName != null and paramName != ''">
+        param_name,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="paramType != null">
+        param_type,
+      </if>
+      <if test="paramValue != null and paramValue != ''">
+        param_value,
+      </if>
+      <if test="envVars != null">
+        env_vars,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="remark != null and remark != ''">
+        remark,
+      </if>
+      <if test="createBy != null and createBy != ''">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="paramName != null and paramName != ''">
+        #{paramName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="paramType != null">
+        #{paramType,jdbcType=INTEGER},
+      </if>
+      <if test="paramValue != null and paramValue != ''">
+        #{paramValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="envVars != null">
+        #{envVars,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.GlobalVarListTypeHandler},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null and remark != ''">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null and createBy != ''">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.apiautomation.apitest.model.GlobalParam">
+    <!--@mbg.generated-->
+    update t_global_param
+    <set>
+      <if test="paramName != null and paramName != ''">
+        param_name = #{paramName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="paramType != null">
+        param_type = #{paramType,jdbcType=INTEGER},
+      </if>
+      <if test="paramValue != null and paramValue != ''">
+        param_value = #{paramValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="envVars != null">
+        env_vars = #{envVars,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.GlobalVarListTypeHandler},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null and remark != ''">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null and createBy != ''">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null and updateBy != ''">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.apiautomation.apitest.model.GlobalParam">
+    <!--@mbg.generated-->
+    update t_global_param
+    set param_name = #{paramName,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      param_type = #{paramType,jdbcType=INTEGER},
+      param_value = #{paramValue,jdbcType=LONGVARCHAR},
+      env_vars = #{envVars,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.GlobalVarListTypeHandler},
+      `type` = #{type,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <!--auto generated by MybatisCodeHelper on 2019-05-13-->
+    <select id="findByAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_global_param
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=INTEGER}
+        </if>
+        <if test="paramName != null and paramName != ''">
+            and param_name=#{paramName,jdbcType=VARCHAR}
+        </if>
+        <if test="projectId != null">
+            and project_id=#{projectId,jdbcType=BIGINT}
+        </if>
+        <if test="paramType != null">
+            and param_type=#{paramType,jdbcType=INTEGER}
+        </if>
+        <if test="paramValue != null and paramValue != ''">
+            and param_value=#{paramValue,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null">
+            and `type` = #{type,jdbcType=INTEGER}
+        </if>
+        <if test="createBy != null and createBy != ''">
+            and create_by=#{createBy,jdbcType=VARCHAR}
+        </if>
+        <if test="createTime != null">
+            and create_time=#{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateBy != null and updateBy != ''">
+            and update_by=#{updateBy,jdbcType=VARCHAR}
+        </if>
+        <if test="updateTime != null">
+            and update_time=#{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="remark != null and remark != ''">
+            and remark=#{remark,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+<!--auto generated by MybatisCodeHelper on 2020-02-05-->
+  <select id="findByProjectIdAndType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_global_param
+        where project_id=#{projectId,jdbcType=BIGINT} and `type`=#{type,jdbcType=INTEGER}
+    </select>
+
+<!--auto generated by MybatisCodeHelper on 2020-02-05-->
+  <select id="findByParamNameAndProjectIdAndType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_global_param
+        where param_name=#{paramName,jdbcType=VARCHAR} and project_id=#{projectId,jdbcType=BIGINT} and
+        `type`=#{type,jdbcType=INTEGER}
+    </select>
+
+<!--auto generated by MybatisCodeHelper on 2020-02-05-->
+  <select id="findByParamNameAndProjectIdAndTypeAndIdNot" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_global_param
+        where param_name=#{paramName,jdbcType=VARCHAR} and project_id=#{projectId,jdbcType=BIGINT} and
+        `type`=#{type,jdbcType=INTEGER} and id <![CDATA[<>]]> #{notId,jdbcType=BIGINT}
+    </select>
+</mapper>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.apiautomation.apitest.dao.TTestsuiteApiResultMapper">
+    <resultMap id="BaseResultMap" type="com.we.apiautomation.apitest.model.TTestsuiteApiResult">
+        <!--@mbg.generated-->
+        <!--@Table t_testsuite_api_result-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="plan_log_id" jdbcType="BIGINT" property="planLogId"/>
+        <result column="suite_id" jdbcType="BIGINT" property="suiteId"/>
+        <result column="suite_name" jdbcType="VARCHAR" property="suiteName"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="case_total_count" jdbcType="INTEGER" property="caseTotalCount"/>
+        <result column="case_succ_count" jdbcType="INTEGER" property="caseSuccCount"/>
+        <result column="case_fail_count" jdbcType="INTEGER" property="caseFailCount"/>
+        <result column="case_skip_count" jdbcType="INTEGER" property="caseSkipCount"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="DtoResultMap" type="com.we.apiautomation.apitest.dto.TTestsuiteApiResultDto">
+        <!--@mbg.generated-->
+        <!--@Table t_testsuite_api_result-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="plan_log_id" jdbcType="BIGINT" property="planLogId"/>
+        <result column="suite_id" jdbcType="BIGINT" property="suiteId"/>
+        <result column="suite_name" jdbcType="VARCHAR" property="suiteName"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="case_total_count" jdbcType="INTEGER" property="caseTotalCount"/>
+        <result column="case_succ_count" jdbcType="INTEGER" property="caseSuccCount"/>
+        <result column="case_fail_count" jdbcType="INTEGER" property="caseFailCount"/>
+        <result column="case_skip_count" jdbcType="INTEGER" property="caseSkipCount"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <collection property="caseResults" column="id" ofType="com.we.apiautomation.apitest.model.TApiCaseResult"
+                    fetchType="eager" select="com.we.apiautomation.apitest.dao.TApiCaseResultMapper.findBySuiteResultId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, plan_log_id, suite_id, suite_name, `status`, case_total_count, case_succ_count,
+        case_fail_count, case_skip_count, end_time, remark, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from t_testsuite_api_result
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from t_testsuite_api_result
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.we.apiautomation.apitest.model.TTestsuiteApiResult"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into t_testsuite_api_result (plan_log_id, suite_id, suite_name,
+        `status`, case_total_count, case_succ_count,
+        case_fail_count, case_skip_count, end_time,
+        remark, create_time)
+        values (#{planLogId,jdbcType=BIGINT}, #{suiteId,jdbcType=BIGINT}, #{suiteName,jdbcType=VARCHAR},
+        #{status,jdbcType=INTEGER}, #{caseTotalCount,jdbcType=INTEGER}, #{caseSuccCount,jdbcType=INTEGER},
+        #{caseFailCount,jdbcType=INTEGER}, #{caseSkipCount,jdbcType=INTEGER}, #{endTime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.we.apiautomation.apitest.model.TTestsuiteApiResult"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into t_testsuite_api_result
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="planLogId != null">
+                plan_log_id,
+            </if>
+            <if test="suiteId != null">
+                suite_id,
+            </if>
+            <if test="suiteName != null and suiteName != ''">
+                suite_name,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="caseTotalCount != null">
+                case_total_count,
+            </if>
+            <if test="caseSuccCount != null">
+                case_succ_count,
+            </if>
+            <if test="caseFailCount != null">
+                case_fail_count,
+            </if>
+            <if test="caseSkipCount != null">
+                case_skip_count,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="remark != null and remark != ''">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="planLogId != null">
+                #{planLogId,jdbcType=BIGINT},
+            </if>
+            <if test="suiteId != null">
+                #{suiteId,jdbcType=BIGINT},
+            </if>
+            <if test="suiteName != null and suiteName != ''">
+                #{suiteName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="caseTotalCount != null">
+                #{caseTotalCount,jdbcType=INTEGER},
+            </if>
+            <if test="caseSuccCount != null">
+                #{caseSuccCount,jdbcType=INTEGER},
+            </if>
+            <if test="caseFailCount != null">
+                #{caseFailCount,jdbcType=INTEGER},
+            </if>
+            <if test="caseSkipCount != null">
+                #{caseSkipCount,jdbcType=INTEGER},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null and remark != ''">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.we.apiautomation.apitest.model.TTestsuiteApiResult">
+        <!--@mbg.generated-->
+        update t_testsuite_api_result
+        <set>
+            <if test="planLogId != null">
+                plan_log_id = #{planLogId,jdbcType=BIGINT},
+            </if>
+            <if test="suiteId != null">
+                suite_id = #{suiteId,jdbcType=BIGINT},
+            </if>
+            <if test="suiteName != null and suiteName != ''">
+                suite_name = #{suiteName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="caseTotalCount != null">
+                case_total_count = #{caseTotalCount,jdbcType=INTEGER},
+            </if>
+            <if test="caseSuccCount != null">
+                case_succ_count = #{caseSuccCount,jdbcType=INTEGER},
+            </if>
+            <if test="caseFailCount != null">
+                case_fail_count = #{caseFailCount,jdbcType=INTEGER},
+            </if>
+            <if test="caseSkipCount != null">
+                case_skip_count = #{caseSkipCount,jdbcType=INTEGER},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.we.apiautomation.apitest.model.TTestsuiteApiResult">
+        <!--@mbg.generated-->
+        update t_testsuite_api_result
+        set plan_log_id = #{planLogId,jdbcType=BIGINT},
+        suite_id = #{suiteId,jdbcType=BIGINT},
+        suite_name = #{suiteName,jdbcType=VARCHAR},
+        `status` = #{status,jdbcType=INTEGER},
+        case_total_count = #{caseTotalCount,jdbcType=INTEGER},
+        case_succ_count = #{caseSuccCount,jdbcType=INTEGER},
+        case_fail_count = #{caseFailCount,jdbcType=INTEGER},
+        case_skip_count = #{caseSkipCount,jdbcType=INTEGER},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        remark = #{remark,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-29-->
+    <delete id="deleteByPlanLogId">
+    delete from t_testsuite_api_result
+    where plan_log_id=#{planLogId,jdbcType=BIGINT}
+  </delete>
+
+    <!--auto generated by MybatisCodeHelper on 2020-03-01-->
+    <select id="findByAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_testsuite_api_result
+        <where>
+            <if test="id != null">
+                and id=#{id,jdbcType=BIGINT}
+            </if>
+            <if test="planLogId != null">
+                and plan_log_id=#{planLogId,jdbcType=BIGINT}
+            </if>
+            <if test="suiteId != null">
+                and suite_id=#{suiteId,jdbcType=BIGINT}
+            </if>
+            <if test="suiteName != null and suiteName != ''">
+                and suite_name=#{suiteName,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                and `status`=#{status,jdbcType=INTEGER}
+            </if>
+            <if test="caseTotalCount != null">
+                and case_total_count=#{caseTotalCount,jdbcType=INTEGER}
+            </if>
+            <if test="caseSuccCount != null">
+                and case_succ_count=#{caseSuccCount,jdbcType=INTEGER}
+            </if>
+            <if test="caseFailCount != null">
+                and case_fail_count=#{caseFailCount,jdbcType=INTEGER}
+            </if>
+            <if test="caseSkipCount != null">
+                and case_skip_count=#{caseSkipCount,jdbcType=INTEGER}
+            </if>
+            <if test="endTime != null">
+                and end_time=#{endTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark=#{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2020-03-01-->
+    <select id="findDtoByAll" resultMap="DtoResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_testsuite_api_result
+        <where>
+            <if test="id != null">
+                and id=#{id,jdbcType=BIGINT}
+            </if>
+            <if test="planLogId != null">
+                and plan_log_id=#{planLogId,jdbcType=BIGINT}
+            </if>
+            <if test="suiteId != null">
+                and suite_id=#{suiteId,jdbcType=BIGINT}
+            </if>
+            <if test="suiteName != null and suiteName != ''">
+                and suite_name=#{suiteName,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                and `status`=#{status,jdbcType=INTEGER}
+            </if>
+            <if test="caseTotalCount != null">
+                and case_total_count=#{caseTotalCount,jdbcType=INTEGER}
+            </if>
+            <if test="caseSuccCount != null">
+                and case_succ_count=#{caseSuccCount,jdbcType=INTEGER}
+            </if>
+            <if test="caseFailCount != null">
+                and case_fail_count=#{caseFailCount,jdbcType=INTEGER}
+            </if>
+            <if test="caseSkipCount != null">
+                and case_skip_count=#{caseSkipCount,jdbcType=INTEGER}
+            </if>
+            <if test="endTime != null">
+                and end_time=#{endTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark=#{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2019-08-27-->
+    <select id="findByPlanIdCount" resultMap="BaseResultMap">
+    SELECT
+    plan_log_id,
+    SUM(case_total_count) AS case_total_count,
+    SUM(case_succ_count) AS case_succ_count,
+    SUM(case_fail_count) AS case_fail_count,
+    SUM(case_skip_count) AS case_skip_count,
+    MAX(end_time) AS end_time,
+    MIN(create_time) AS create_time
+    FROM t_testsuite_api_result
+    WHERE plan_log_id=#{planId,jdbcType=BIGINT}
+    GROUP BY plan_log_id
+  </select>
+</mapper>

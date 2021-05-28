@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.apiautomation.apitest.dao.TApiResultMapper">
+  <resultMap id="BaseResultMap" type="com.we.apiautomation.apitest.model.TApiResult">
+    <!--@mbg.generated-->
+    <!--@Table t_api_result-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="plan_log_id" jdbcType="BIGINT" property="planLogId" />
+    <result column="case_result_id" jdbcType="BIGINT" property="caseResultId" />
+    <result column="step_id" jdbcType="BIGINT" property="stepId" />
+    <result column="step_name" jdbcType="VARCHAR" property="stepName" />
+    <result column="result_type" jdbcType="INTEGER" property="resultType" />
+    <result column="req_method" jdbcType="VARCHAR" property="reqMethod" />
+    <result column="req_url" jdbcType="LONGVARCHAR" property="reqUrl" />
+    <result column="req_headers" jdbcType="LONGVARCHAR" property="reqHeaders" typeHandler="com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler" />
+    <result column="req_query" jdbcType="LONGVARCHAR" property="reqQuery" typeHandler="com.we.apiautomation.apitest.typehandler.QueryListTypeHandler" />
+    <result column="req_body_type" jdbcType="VARCHAR" property="reqBodyType" />
+    <result column="req_body_data" jdbcType="LONGVARCHAR" property="reqBodyData" typeHandler="com.we.apiautomation.apitest.typehandler.BodyDataListTypeHandler" />
+    <result column="req_body_json" jdbcType="LONGVARCHAR" property="reqBodyJson" />
+    <result column="rsp_status_code" jdbcType="INTEGER" property="rspStatusCode" />
+    <result column="rsp_body_type" jdbcType="VARCHAR" property="rspBodyType" />
+    <result column="rsp_body" jdbcType="LONGVARCHAR" property="rspBody" />
+    <result column="rsp_body_size" jdbcType="INTEGER" property="rspBodySize" />
+    <result column="rsp_headers" jdbcType="LONGVARCHAR" property="rspHeaders" typeHandler="com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler" />
+    <result column="rsp_extracts" jdbcType="LONGVARCHAR" property="rspExtracts" typeHandler="com.we.apiautomation.apitest.typehandler.ExtractResultListTypeHandler" />
+    <result column="rsp_asserts" jdbcType="LONGVARCHAR" property="rspAsserts" typeHandler="com.we.apiautomation.apitest.typehandler.AssertResultListTypeHandler" />
+    <result column="rsp_time" jdbcType="BIGINT" property="rspTime" />
+    <result column="exception" jdbcType="LONGVARCHAR" property="exception" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, plan_log_id, case_result_id, step_id, step_name, result_type, req_method, req_url,
+    req_headers, req_query, req_body_type, req_body_data, req_body_json, rsp_status_code,
+    rsp_body_type, rsp_body, rsp_body_size, rsp_headers, rsp_extracts, rsp_asserts, rsp_time,
+    `exception`, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_api_result
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_api_result
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.we.apiautomation.apitest.model.TApiResult" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_api_result (plan_log_id, case_result_id, step_id,
+      step_name, result_type, req_method,
+      req_url, req_headers,
+      req_query,
+      req_body_type, req_body_data,
+      req_body_json, rsp_status_code, rsp_body_type,
+      rsp_body, rsp_body_size, rsp_headers,
+      rsp_extracts,
+      rsp_asserts,
+      rsp_time, `exception`, create_time
+      )
+    values (#{planLogId,jdbcType=BIGINT}, #{caseResultId,jdbcType=BIGINT}, #{stepId,jdbcType=BIGINT},
+      #{stepName,jdbcType=VARCHAR}, #{resultType,jdbcType=INTEGER}, #{reqMethod,jdbcType=VARCHAR},
+      #{reqUrl,jdbcType=LONGVARCHAR}, #{reqHeaders,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler},
+      #{reqQuery,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.QueryListTypeHandler},
+      #{reqBodyType,jdbcType=VARCHAR}, #{reqBodyData,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.BodyDataListTypeHandler},
+      #{reqBodyJson,jdbcType=LONGVARCHAR}, #{rspStatusCode,jdbcType=INTEGER}, #{rspBodyType,jdbcType=VARCHAR},
+      #{rspBody,jdbcType=LONGVARCHAR}, #{rspBodySize,jdbcType=INTEGER}, #{rspHeaders,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler},
+      #{rspExtracts,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.ExtractResultListTypeHandler},
+      #{rspAsserts,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.AssertResultListTypeHandler},
+      #{rspTime,jdbcType=BIGINT}, #{exception,jdbcType=LONGVARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.we.apiautomation.apitest.model.TApiResult" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_api_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="planLogId != null">
+        plan_log_id,
+      </if>
+      <if test="caseResultId != null">
+        case_result_id,
+      </if>
+      <if test="stepId != null">
+        step_id,
+      </if>
+      <if test="stepName != null and stepName != ''">
+        step_name,
+      </if>
+      <if test="resultType != null">
+        result_type,
+      </if>
+      <if test="reqMethod != null and reqMethod != ''">
+        req_method,
+      </if>
+      <if test="reqUrl != null and reqUrl != ''">
+        req_url,
+      </if>
+      <if test="reqHeaders != null">
+        req_headers,
+      </if>
+      <if test="reqQuery != null">
+        req_query,
+      </if>
+      <if test="reqBodyType != null and reqBodyType != ''">
+        req_body_type,
+      </if>
+      <if test="reqBodyData != null">
+        req_body_data,
+      </if>
+      <if test="reqBodyJson != null and reqBodyJson != ''">
+        req_body_json,
+      </if>
+      <if test="rspStatusCode != null">
+        rsp_status_code,
+      </if>
+      <if test="rspBodyType != null and rspBodyType != ''">
+        rsp_body_type,
+      </if>
+      <if test="rspBody != null and rspBody != ''">
+        rsp_body,
+      </if>
+      <if test="rspBodySize != null">
+        rsp_body_size,
+      </if>
+      <if test="rspHeaders != null">
+        rsp_headers,
+      </if>
+      <if test="rspExtracts != null">
+        rsp_extracts,
+      </if>
+      <if test="rspAsserts != null">
+        rsp_asserts,
+      </if>
+      <if test="rspTime != null">
+        rsp_time,
+      </if>
+      <if test="exception != null and exception != ''">
+        `exception`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="planLogId != null">
+        #{planLogId,jdbcType=BIGINT},
+      </if>
+      <if test="caseResultId != null">
+        #{caseResultId,jdbcType=BIGINT},
+      </if>
+      <if test="stepId != null">
+        #{stepId,jdbcType=BIGINT},
+      </if>
+      <if test="stepName != null and stepName != ''">
+        #{stepName,jdbcType=VARCHAR},
+      </if>
+      <if test="resultType != null">
+        #{resultType,jdbcType=INTEGER},
+      </if>
+      <if test="reqMethod != null and reqMethod != ''">
+        #{reqMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="reqUrl != null and reqUrl != ''">
+        #{reqUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="reqHeaders != null">
+        #{reqHeaders,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler},
+      </if>
+      <if test="reqQuery != null">
+        #{reqQuery,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.QueryListTypeHandler},
+      </if>
+      <if test="reqBodyType != null and reqBodyType != ''">
+        #{reqBodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="reqBodyData != null">
+        #{reqBodyData,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.BodyDataListTypeHandler},
+      </if>
+      <if test="reqBodyJson != null and reqBodyJson != ''">
+        #{reqBodyJson,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rspStatusCode != null">
+        #{rspStatusCode,jdbcType=INTEGER},
+      </if>
+      <if test="rspBodyType != null and rspBodyType != ''">
+        #{rspBodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="rspBody != null and rspBody != ''">
+        #{rspBody,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rspBodySize != null">
+        #{rspBodySize,jdbcType=INTEGER},
+      </if>
+      <if test="rspHeaders != null">
+        #{rspHeaders,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler},
+      </if>
+      <if test="rspExtracts != null">
+        #{rspExtracts,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.ExtractResultListTypeHandler},
+      </if>
+      <if test="rspAsserts != null">
+        #{rspAsserts,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.AssertResultListTypeHandler},
+      </if>
+      <if test="rspTime != null">
+        #{rspTime,jdbcType=BIGINT},
+      </if>
+      <if test="exception != null and exception != ''">
+        #{exception,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.apiautomation.apitest.model.TApiResult">
+    <!--@mbg.generated-->
+    update t_api_result
+    <set>
+      <if test="planLogId != null">
+        plan_log_id = #{planLogId,jdbcType=BIGINT},
+      </if>
+      <if test="caseResultId != null">
+        case_result_id = #{caseResultId,jdbcType=BIGINT},
+      </if>
+      <if test="stepId != null">
+        step_id = #{stepId,jdbcType=BIGINT},
+      </if>
+      <if test="stepName != null and stepName != ''">
+        step_name = #{stepName,jdbcType=VARCHAR},
+      </if>
+      <if test="resultType != null">
+        result_type = #{resultType,jdbcType=INTEGER},
+      </if>
+      <if test="reqMethod != null and reqMethod != ''">
+        req_method = #{reqMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="reqUrl != null and reqUrl != ''">
+        req_url = #{reqUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="reqHeaders != null">
+        req_headers = #{reqHeaders,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler},
+      </if>
+      <if test="reqQuery != null">
+        req_query = #{reqQuery,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.QueryListTypeHandler},
+      </if>
+      <if test="reqBodyType != null and reqBodyType != ''">
+        req_body_type = #{reqBodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="reqBodyData != null">
+        req_body_data = #{reqBodyData,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.BodyDataListTypeHandler},
+      </if>
+      <if test="reqBodyJson != null and reqBodyJson != ''">
+        req_body_json = #{reqBodyJson,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rspStatusCode != null">
+        rsp_status_code = #{rspStatusCode,jdbcType=INTEGER},
+      </if>
+      <if test="rspBodyType != null and rspBodyType != ''">
+        rsp_body_type = #{rspBodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="rspBody != null and rspBody != ''">
+        rsp_body = #{rspBody,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rspBodySize != null">
+        rsp_body_size = #{rspBodySize,jdbcType=INTEGER},
+      </if>
+      <if test="rspHeaders != null">
+        rsp_headers = #{rspHeaders,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler},
+      </if>
+      <if test="rspExtracts != null">
+        rsp_extracts = #{rspExtracts,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.ExtractResultListTypeHandler},
+      </if>
+      <if test="rspAsserts != null">
+        rsp_asserts = #{rspAsserts,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.AssertResultListTypeHandler},
+      </if>
+      <if test="rspTime != null">
+        rsp_time = #{rspTime,jdbcType=BIGINT},
+      </if>
+      <if test="exception != null and exception != ''">
+        `exception` = #{exception,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.apiautomation.apitest.model.TApiResult">
+    <!--@mbg.generated-->
+    update t_api_result
+    set plan_log_id = #{planLogId,jdbcType=BIGINT},
+      case_result_id = #{caseResultId,jdbcType=BIGINT},
+      step_id = #{stepId,jdbcType=BIGINT},
+      step_name = #{stepName,jdbcType=VARCHAR},
+      result_type = #{resultType,jdbcType=INTEGER},
+      req_method = #{reqMethod,jdbcType=VARCHAR},
+      req_url = #{reqUrl,jdbcType=LONGVARCHAR},
+      req_headers = #{reqHeaders,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler},
+      req_query = #{reqQuery,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.QueryListTypeHandler},
+      req_body_type = #{reqBodyType,jdbcType=VARCHAR},
+      req_body_data = #{reqBodyData,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.BodyDataListTypeHandler},
+      req_body_json = #{reqBodyJson,jdbcType=LONGVARCHAR},
+      rsp_status_code = #{rspStatusCode,jdbcType=INTEGER},
+      rsp_body_type = #{rspBodyType,jdbcType=VARCHAR},
+      rsp_body = #{rspBody,jdbcType=LONGVARCHAR},
+      rsp_body_size = #{rspBodySize,jdbcType=INTEGER},
+      rsp_headers = #{rspHeaders,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.HeaderListTypeHandler},
+      rsp_extracts = #{rspExtracts,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.ExtractResultListTypeHandler},
+      rsp_asserts = #{rspAsserts,jdbcType=LONGVARCHAR,typeHandler=com.we.apiautomation.apitest.typehandler.AssertResultListTypeHandler},
+      rsp_time = #{rspTime,jdbcType=BIGINT},
+      `exception` = #{exception,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+<!--auto generated by MybatisCodeHelper on 2020-02-29-->
+  <delete id="deleteByPlanLogId">
+        delete from t_api_result
+        where plan_log_id=#{planLogId,jdbcType=BIGINT}
+    </delete>
+
+<!--auto generated by MybatisCodeHelper on 2020-03-01-->
+  <select id="findByAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_api_result
+        <where>
+            <if test="id != null">
+                and id=#{id,jdbcType=BIGINT}
+            </if>
+            <if test="planLogId != null">
+                and plan_log_id=#{planLogId,jdbcType=BIGINT}
+            </if>
+            <if test="caseResultId != null">
+                and case_result_id=#{caseResultId,jdbcType=BIGINT}
+            </if>
+            <if test="stepId != null">
+                and step_id=#{stepId,jdbcType=BIGINT}
+            </if>
+            <if test="stepName != null and stepName != ''">
+                and step_name=#{stepName,jdbcType=VARCHAR}
+            </if>
+            <if test="resultType != null">
+                and result_type=#{resultType,jdbcType=INTEGER}
+            </if>
+            <if test="reqMethod != null and reqMethod != ''">
+                and req_method=#{reqMethod,jdbcType=VARCHAR}
+            </if>
+            <if test="reqUrl != null and reqUrl != ''">
+                and req_url=#{reqUrl,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="reqHeaders != null">
+                and req_headers=#{reqHeaders,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="reqQuery != null">
+                and req_query=#{reqQuery,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="reqBodyType != null and reqBodyType != ''">
+                and req_body_type=#{reqBodyType,jdbcType=VARCHAR}
+            </if>
+            <if test="reqBodyData != null">
+                and req_body_data=#{reqBodyData,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="reqBodyJson != null and reqBodyJson != ''">
+                and req_body_json=#{reqBodyJson,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="rspStatusCode != null">
+                and rsp_status_code=#{rspStatusCode,jdbcType=INTEGER}
+            </if>
+            <if test="rspBodyType != null and rspBodyType != ''">
+                and rsp_body_type=#{rspBodyType,jdbcType=VARCHAR}
+            </if>
+            <if test="rspBody != null and rspBody != ''">
+                and rsp_body=#{rspBody,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="rspBodySize != null">
+                and rsp_body_size=#{rspBodySize,jdbcType=INTEGER}
+            </if>
+            <if test="rspHeaders != null">
+                and rsp_headers=#{rspHeaders,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="rspExtracts != null">
+                and rsp_extracts=#{rspExtracts,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="rspAsserts != null">
+                and rsp_asserts=#{rspAsserts,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="rspTime != null">
+                and rsp_time=#{rspTime,jdbcType=BIGINT}
+            </if>
+            <if test="exception != null and exception != ''">
+                and `exception`=#{exception,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>
